@@ -66,6 +66,7 @@ def update_weight_1(output_hidden, alpha, weight_1, weight_2, x, error_gradients
     return updated_weight
 
 def back_propagation():
+    # Khai báo các biến cần thiết
     alpha = 0.1 # learning rate
     x = [0.1, 0.5]
     target_output = [1, 0]
@@ -77,18 +78,12 @@ def back_propagation():
     heso = 0
     while time <= 10000:
         output_hidden = calculate_hidden(x, weight_1)
-        # print("Output at hidden layer = ", output_hidden)
         last_output = calculate_output(output_hidden, weight_2)
-        # print("Output at output layer = ", last_output)
         error = calculate_error(target_output, last_output)
-        # print("Total error = ", error)
         # update weight_2 (hidden layer to output layer)
         new_weight_2, error_gradients = update_weight_2(target_output, last_output, alpha, weight_2)
-        # print("Wij(2) after updated: ", new_weight_2)
-        # print(error_gradients)
         # update weight_1 (input layer to hidden layer)
         new_weight_1 = update_weight_1(output_hidden, alpha, weight_1, weight_2, x, error_gradients)
-        # print("Wij(1) after updated: ",new_weight_1)
         if time == 1000 * heso:
             print("Lặp", time, ":")
             print("Output at hidden layer = ", output_hidden)
